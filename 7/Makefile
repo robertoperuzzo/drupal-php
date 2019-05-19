@@ -3,8 +3,8 @@
 PHP_VER ?= 7.3
 
 BASE_IMAGE_TAG = $(PHP_VER)
-REPO = wodby/drupal-php
-NAME = drupal-php-$(PHP_VER)
+REPO = robertoperuzzo/drupal-php-sqlsrv
+NAME = drupal-php-sqlsrv-$(PHP_VER)
 
 ifeq ($(TAG),)
     ifneq ($(PHP_DEV_MACOS),)

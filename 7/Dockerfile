@@ -1,6 +1,6 @@
 ARG BASE_IMAGE_TAG
 
-FROM wodby/php:${BASE_IMAGE_TAG}
+FROM robertoperuzzo/php-sqlserver:${BASE_IMAGE_TAG}
 
 ENV DRUSH_LAUNCHER_VER="0.6.0" \
     DRUPAL_CONSOLE_LAUNCHER_VER="1.8.0" \
@@ -13,7 +13,7 @@ USER root
 
 RUN set -ex; \
     \
-    su-exec wodby composer global require drush/drush:^8.0; \
+    gosu wodby composer global require drush/drush:^8.0; \
     \
     # Drush launcher
     drush_launcher_url="https://github.com/drush-ops/drush-launcher/releases/download/${DRUSH_LAUNCHER_VER}/drush.phar"; \
@@ -22,11 +22,11 @@ RUN set -ex; \
     mv drush.phar /usr/local/bin/drush; \
     \
     # Drush extensions
-    su-exec wodby mkdir -p /home/wodby/.drush; \
+    gosu wodby mkdir -p /home/wodby/.drush; \
     drush_patchfile_url="https://bitbucket.org/davereid/drush-patchfile.git"; \
-    su-exec wodby git clone "${drush_patchfile_url}" /home/wodby/.drush/drush-patchfile; \
+    gosu wodby git clone "${drush_patchfile_url}" /home/wodby/.drush/drush-patchfile; \
     drush_rr_url="https://ftp.drupal.org/files/projects/registry_rebuild-7.x-2.5.tar.gz"; \
-    wget -qO- "${drush_rr_url}" | su-exec wodby tar zx -C /home/wodby/.drush; \
+    wget -qO- "${drush_rr_url}" | gosu wodby tar zx -C /home/wodby/.drush; \
     \
     # Drupal console
     console_url="https://github.com/hechoendrupal/drupal-console-launcher/releases/download/${DRUPAL_CONSOLE_LAUNCHER_VER}/drupal.phar"; \
@@ -43,8 +43,8 @@ RUN set -ex; \
     chmod 775 "${FILES_DIR}/config"; \
     \
     # Clean up
-    su-exec wodby composer clear-cache; \
-    su-exec wodby drush cc drush
+    gosu wodby composer clear-cache; \
+    gosu wodby drush cc drush
 
 USER wodby
 
