@@ -19,9 +19,9 @@ $wodby['db']['username'] = '{{ getenv "DB_USER" "" }}';
 $wodby['db']['password'] = '{{ getenv "DB_PASSWORD" "" }}';
 $wodby['db']['driver'] = '{{ getenv "DB_DRIVER" "mysql" }}';
 
-$wodby['redis']['host'] = '{{ getenv "REDIS_HOST" "" }}';
-$wodby['redis']['port'] = '{{ getenv "REDIS_PORT" "6379" }}';
-$wodby['redis']['password'] = '{{ getenv "REDIS_PASSWORD" "" }}';
+// $wodby['redis']['host'] = '{{ getenv "REDIS_HOST" "" }}';
+// $wodby['redis']['port'] = '{{ getenv "REDIS_PORT" "6379" }}';
+// $wodby['redis']['password'] = '{{ getenv "REDIS_PASSWORD" "" }}';
 
 $settings['reverse_proxy_addresses'] = (function () {
     $internalSubnet = '172.17.0.0';

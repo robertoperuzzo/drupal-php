@@ -55,7 +55,7 @@ make git-clone url="${GIT_URL}" -f /usr/local/bin/actions.mk
 make git-checkout target=7.x -f /usr/local/bin/actions.mk
 
 composer install
-composer require drupal/varnish drupal/redis
+# composer require drupal/varnish drupal/redis
 
 cd "${DRUPAL_ROOT}"
 
@@ -63,7 +63,7 @@ run_action files-import source="${FILES_ARCHIVE_URL}"
 run_action init-drupal
 
 drush si -y --db-url="${DB_DRIVER}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}"
-drush en varnish redis -y --quiet
+# drush en varnish redis -y --quiet
 
 run_action cache-clear
 
@@ -74,8 +74,8 @@ check_status "files" "sites/${DRUPAL_SITE}/files"
 check_status "private" "${FILES_DIR}/private"
 check_status "temp" "/tmp"
 
-check_rq "redis" "Connected, using the <em>PhpRedis</em> client"
-check_rq "varnish" "Running"
+# check_rq "redis" "Connected, using the <em>PhpRedis</em> client"
+# check_rq "varnish" "Running"
 check_rq "file system" "Writable (<em>public</em> download method)"
 check_rq "settings.php" "Protected"
 

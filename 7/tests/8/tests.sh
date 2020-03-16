@@ -51,7 +51,7 @@ make git-clone url="${GIT_URL}" -f /usr/local/bin/actions.mk
 make git-checkout target=8.x -f /usr/local/bin/actions.mk
 
 composer install
-composer require drupal/redis
+# composer require drupal/redis
 
 cd "${DRUPAL_ROOT}"
 
@@ -61,9 +61,9 @@ run_action init-drupal
 drush si -y --db-url="${DB_DRIVER}://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}"
 
 # Comment out redis settings before enabling the module.
-sed -i "s#^\$wodby\['redis'\]#//&#" "${CONF_DIR}/wodby.settings.php"
-drush en redis -y --quiet
-sed -i "s#^//\(\$wodby\['redis'\]\)#\1#" "${CONF_DIR}/wodby.settings.php"
+# sed -i "s#^\$wodby\['redis'\]#//&#" "${CONF_DIR}/wodby.settings.php"
+# drush en redis -y --quiet
+# sed -i "s#^//\(\$wodby\['redis'\]\)#\1#" "${CONF_DIR}/wodby.settings.php"
 
 run_action cache-clear target=render
 run_action cache-rebuild
@@ -81,7 +81,7 @@ check_status "temp" "/tmp"
 #check_status "drupal-settings-file" "sites/${DRUPAL_SITE}/settings.php"
 #check_status "config-sync" "${FILES_DIR}/config/sync_${DRUPAL_FILES_SYNC_SALT}"
 
-check_rq "Redis" "Connected, using the <em>PhpRedis</em> client"
+# check_rq "Redis" "Connected, using the <em>PhpRedis</em> client"
 check_rq "Trusted Host Settings" "Enabled"
 check_rq "File system" "Writable (<em>public</em> download method)"
 check_rq "Configuration files" "Protected"
