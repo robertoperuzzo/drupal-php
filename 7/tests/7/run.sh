@@ -23,6 +23,6 @@ if [[ "${IMAGE}" =~ "-dev-macos" ]]; then
     docker-compose exec php sudo init_container
 fi
 
-docker-compose exec --user=0 php apt-get update; apt-get install jq
+docker-compose exec --user=0 php apt-get install jq
 docker-compose exec php tests.sh
 docker-compose down
