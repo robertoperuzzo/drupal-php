@@ -49,7 +49,6 @@ if [[ -n "${tmp_dir_files}" ]]; then
         sudo files_sync "${tmp_dir_files}/" "${FILES_DIR}/public/"
     fi
 
-    chmod -R 775 "${FILES_DIR}/public/" || true
 else
     echo "No files directory found for import"
 fi

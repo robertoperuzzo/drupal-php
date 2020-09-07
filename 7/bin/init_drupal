@@ -11,7 +11,7 @@ settings_php="${DRUPAL_SITE_DIR}/settings.php"
 sites_php="${DRUPAL_ROOT}/sites/sites.php"
 
 mkdir -p "${DRUPAL_SITE_DIR}"
-chmod 755 "${DRUPAL_SITE_DIR}" || true
+chmod -R 755 "${DRUPAL_SITE_DIR}" || true
 
 # Include wodby.settings.php
 if [[ ! -f "${settings_php}" ]]; then
